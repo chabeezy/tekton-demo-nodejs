@@ -1,7 +1,7 @@
 apiVersion: tekton.dev/v1beta1
 kind: Task
 metadata:
-  name: node-tests
+  name: node-run
 spec:
   params:
     - name: package
@@ -11,11 +11,9 @@ spec:
       default: "."
   steps:
     - image: node:17-alpine3.12
-      name: 'run-tests'
+      name: 'run-the-app'
       script: |
-        ls
-        npm ci
-        npm test
+        node index.js
       workingDir: $(workspaces.source.path)/$(params.context)
   workspaces:
     - name: source

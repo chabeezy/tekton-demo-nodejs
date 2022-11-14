@@ -49,26 +49,13 @@ spec:
         - name: source
           workspace: workarea
           subpath: git
-    # - name: build
-    #   runAfter: [test]
-    #   taskRef:
-    #     name: golang-build
-    #   params:
-    #     - name: package
-    #       value: $(params.package)
-    #     - name: packages
-    #       value: ./
-    #   workspaces:
-    #     - name: source
-    #       workspace: workarea
-    #       subpath: git
-    # - name: run
-    #   runAfter: [build]
-    #   taskRef:
-    #     name: golang-run
-    #   params:
-    #     - name: package
-    #       value: $(params.package)
+    - name: run
+      runAfter: [test]
+      taskRef:
+        name: node-run
+      params:
+        - name: package
+          value: $(params.package)
       workspaces:
         - name: source
           workspace: workarea
