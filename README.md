@@ -20,6 +20,9 @@ systems by abstracting away the underlying implementation details.
   kubectl apply --filename \
 https://storage.googleapis.com/tekton-releases/pipeline/latest/release.yaml
 
+kubectl get pods --namespace tekton-pipelines --watch
+
+
 # Add Git Clone task from tekton hub, many more at tekton hub
 
     tkn hub install task git-clone

@@ -10,7 +10,7 @@ spec:
       description: path to the directory to use as context
       default: "."
   steps:
-    - image: node:17-alpine3.12
+    - image: node:18.0.0
       name: 'run-build'
       script: |
         npm install
