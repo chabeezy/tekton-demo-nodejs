@@ -1,0 +1,19 @@
+apiVersion: tekton.dev/v1beta1
+kind: Task
+metadata:
+  name: node-build
+spec:
+  params:
+    - name: package
+      description: package (and its children) to run
+    - name: context
+      description: path to the directory to use as context
+      default: "."
+  steps:
+    - image: node:17-alpine3.12
+      name: 'run-build'
+      script: |
+        npm install
+      workingDir: $(workspaces.source.path)/$(params.context)
+  workspaces:
+    - name: source

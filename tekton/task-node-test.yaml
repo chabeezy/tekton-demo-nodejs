@@ -1,7 +1,7 @@
 apiVersion: tekton.dev/v1beta1
 kind: Task
 metadata:
-  name: node-tests
+  name: node-test-and-lint
 spec:
   params:
     - name: package
@@ -11,11 +11,10 @@ spec:
       default: "."
   steps:
     - image: node:17-alpine3.12
-      name: 'run-tests'
+      name: 'run-test-lint'
       script: |
-        ls
-        npm ci
         npm test
+        npm run lint
       workingDir: $(workspaces.source.path)/$(params.context)
   workspaces:
     - name: source

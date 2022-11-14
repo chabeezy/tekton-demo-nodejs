@@ -25,23 +25,21 @@ spec:
       params:
         - name: url
           value: https://$(params.package)
-    # - name: lint
-    #   runAfter: [clone]
-    #   taskRef:
-    #     name: golangci-lint
-    #   params:
-    #     - name: package
-    #       value: $(params.package)
-    #     - name: flags
-    #       value: --verbose
-    #   workspaces:
-    #     - name: source
-    #       workspace: workarea
-    #       subpath: git
-    - name: test
+    - name: build
       runAfter: [clone]
       taskRef:
-        name: node-tests
+        name: node-build
+      params:
+        - name: package
+          value: $(params.package)
+      workspaces:
+        - name: source
+          workspace: workarea
+          subpath: git
+    - name: test-and-lint
+      runAfter: [build]
+      taskRef:
+        name: node-test-and-lint
       params:
         - name: package
           value: $(params.package)
@@ -50,7 +48,7 @@ spec:
           workspace: workarea
           subpath: git
     - name: run
-      runAfter: [test]
+      runAfter: [test-and-lint]
       taskRef:
         name: node-run
       params:

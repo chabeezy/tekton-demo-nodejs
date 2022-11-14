@@ -1,7 +1,7 @@
 const helloName = name => {
-    console.log(`Hello ${name}`);
+  console.log(`Hello ${name}`)
 }
 
-helloName("Raytheon");
+helloName('Raytheon')
 
 module.exports = { helloName }

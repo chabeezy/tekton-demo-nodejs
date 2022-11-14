@@ -1,6 +1,6 @@
 # Tekton Demo
 
-Demo of testing and running a Hello World Node app using Tekton.
+Demo of building, testing and running a Hello World Node app using Tekton.
 
 Tekton is a powerful yet flexible Kubernetes-native open-source framework for creating continuous integration
 and delivery (CI/CD) systems. It lets users build, test, and deploy across multiple cloud providers or on-premises
@@ -20,13 +20,14 @@ systems by abstracting away the underlying implementation details.
   kubectl apply --filename \
 https://storage.googleapis.com/tekton-releases/pipeline/latest/release.yaml
 
-# Add Git Clone task from tekton hub
+# Add Git Clone task from tekton hub, many more at tekton hub
 
     tkn hub install task git-clone
 
 # Add tasks
 
-    kubectl apply -f tekton/task-node-tests.yaml
+    kubectl apply -f tekton/task-node-build.yaml
+    kubectl apply -f tekton/task-node-test.yaml
     kubectl apply -f tekton/task-node-run.yaml
 
 # Install the Pipeline
