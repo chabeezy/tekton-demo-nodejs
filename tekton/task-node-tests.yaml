@@ -1,0 +1,19 @@
+apiVersion: tekton.dev/v1beta1
+kind: Task
+metadata:
+  name: node-tests
+spec:
+  params:
+    - name: package
+      description: package (and its children) to run
+    - name: context
+      description: path to the directory to use as context
+      default: "."
+  steps:
+    - image: node
+      name: 'run-tests'
+      script: |
+        npm i
+        npm test
+  workspaces:
+    - name: source
