@@ -6,6 +6,8 @@ Tekton is a powerful yet flexible Kubernetes-native open-source framework for cr
 and delivery (CI/CD) systems. It lets users build, test, and deploy across multiple cloud providers or on-premises
 systems by abstracting away the underlying implementation details.
 
+This repo will help you set up your first pipeline, you'll pull some code, build it, test it, and run it - all from tekton!
+
 ## Setup
 ```
 # Install minikube, and tekton cli
